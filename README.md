@@ -4,7 +4,7 @@ Sitio web oficial de **La Liga**, una banda de punk rock con sección de vientos
 El proyecto presenta la música, historia e identidad visual del grupo con un diseño moderno y completamente responsive.
 
 🌐 **Demo en vivo:**  
-👉 https://pablovillagrangonz.github.io/La-Liga/
+👉 
 
 ---
 
