@@ -52,6 +52,43 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ----------------------------------------------------------
+      8) Scroll behavior: parallax hero + hide/show header
+  ----------------------------------------------------------- */
+  (function scrollEffects() {
+    let lastScroll = window.scrollY || 0;
+    let ticking = false;
+    const maxParallax = 40; // px
+    const hero = $('#hero .hero-cover');
+
+    function onFrame() {
+      const current = window.scrollY || 0;
+      const delta = current - lastScroll;
+
+      // add body class for direction
+      if (Math.abs(delta) > 8) {
+        if (delta > 0) document.body.classList.add('scrolling-down');
+        else document.body.classList.remove('scrolling-down');
+      }
+
+      // parallax: translate hero image slightly
+      if (hero) {
+        const t = Math.max(Math.min(current * 0.12, maxParallax), -maxParallax);
+        hero.style.transform = `translateY(${t}px) scale(1.03)`;
+      }
+
+      lastScroll = current;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onFrame);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+
+  /* ----------------------------------------------------------
       4) Menu toggle mobile (con focus-trap simple)
   ----------------------------------------------------------- */
   const menuBtn = $('.menu-toggle');
